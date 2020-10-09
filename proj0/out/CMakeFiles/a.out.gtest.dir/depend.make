@@ -6,6 +6,6 @@ CMakeFiles/a.out.gtest.dir/app/proj0.cpp.o: ../app/proj0.hpp
 
 CMakeFiles/a.out.gtest.dir/gtest/gtestmain.cpp.o: ../gtest/gtestmain.cpp
 
-CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.o: ../app/proj0.hpp
-CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.o: ../gtest/test1.cpp
+CMakeFiles/a.out.gtest.dir/gtest/test.cpp.o: ../app/proj0.hpp
+CMakeFiles/a.out.gtest.dir/gtest/test.cpp.o: ../gtest/test.cpp
 

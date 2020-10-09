@@ -263,32 +263,32 @@ gtest/gtestmain.cpp.s:
 	$(MAKE) -f CMakeFiles/a.out.gtest.dir/build.make CMakeFiles/a.out.gtest.dir/gtest/gtestmain.cpp.s
 .PHONY : gtest/gtestmain.cpp.s
 
-gtest/test1.o: gtest/test1.cpp.o
+gtest/test.o: gtest/test.cpp.o
 
-.PHONY : gtest/test1.o
+.PHONY : gtest/test.o
 
 # target to build an object file
-gtest/test1.cpp.o:
-	$(MAKE) -f CMakeFiles/a.out.gtest.dir/build.make CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.o
-.PHONY : gtest/test1.cpp.o
+gtest/test.cpp.o:
+	$(MAKE) -f CMakeFiles/a.out.gtest.dir/build.make CMakeFiles/a.out.gtest.dir/gtest/test.cpp.o
+.PHONY : gtest/test.cpp.o
 
-gtest/test1.i: gtest/test1.cpp.i
+gtest/test.i: gtest/test.cpp.i
 
-.PHONY : gtest/test1.i
+.PHONY : gtest/test.i
 
 # target to preprocess a source file
-gtest/test1.cpp.i:
-	$(MAKE) -f CMakeFiles/a.out.gtest.dir/build.make CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.i
-.PHONY : gtest/test1.cpp.i
+gtest/test.cpp.i:
+	$(MAKE) -f CMakeFiles/a.out.gtest.dir/build.make CMakeFiles/a.out.gtest.dir/gtest/test.cpp.i
+.PHONY : gtest/test.cpp.i
 
-gtest/test1.s: gtest/test1.cpp.s
+gtest/test.s: gtest/test.cpp.s
 
-.PHONY : gtest/test1.s
+.PHONY : gtest/test.s
 
 # target to generate assembly for a file
-gtest/test1.cpp.s:
-	$(MAKE) -f CMakeFiles/a.out.gtest.dir/build.make CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.s
-.PHONY : gtest/test1.cpp.s
+gtest/test.cpp.s:
+	$(MAKE) -f CMakeFiles/a.out.gtest.dir/build.make CMakeFiles/a.out.gtest.dir/gtest/test.cpp.s
+.PHONY : gtest/test.cpp.s
 
 # Help Target
 help:
@@ -313,9 +313,9 @@ help:
 	@echo "... gtest/gtestmain.o"
 	@echo "... gtest/gtestmain.i"
 	@echo "... gtest/gtestmain.s"
-	@echo "... gtest/test1.o"
-	@echo "... gtest/test1.i"
-	@echo "... gtest/test1.s"
+	@echo "... gtest/test.o"
+	@echo "... gtest/test.i"
+	@echo "... gtest/test.s"
 .PHONY : help
 
 

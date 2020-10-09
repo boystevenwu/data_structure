@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/a.out.gtest.dir/app/proj0.cpp.o"
   "CMakeFiles/a.out.gtest.dir/gtest/gtestmain.cpp.o"
-  "CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.o"
+  "CMakeFiles/a.out.gtest.dir/gtest/test.cpp.o"
   "bin/a.out.gtest"
   "bin/a.out.gtest.pdb"
 )

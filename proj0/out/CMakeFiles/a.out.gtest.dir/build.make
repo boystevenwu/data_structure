@@ -70,18 +70,18 @@ CMakeFiles/a.out.gtest.dir/gtest/gtestmain.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.out.gtest.dir/gtest/gtestmain.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ics46/projects/proj0/gtest/gtestmain.cpp -o CMakeFiles/a.out.gtest.dir/gtest/gtestmain.cpp.s
 
-CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.o: CMakeFiles/a.out.gtest.dir/flags.make
-CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.o: ../gtest/test1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ics46/projects/proj0/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.o"
-	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.o -c /home/ics46/projects/proj0/gtest/test1.cpp
+CMakeFiles/a.out.gtest.dir/gtest/test.cpp.o: CMakeFiles/a.out.gtest.dir/flags.make
+CMakeFiles/a.out.gtest.dir/gtest/test.cpp.o: ../gtest/test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ics46/projects/proj0/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/a.out.gtest.dir/gtest/test.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a.out.gtest.dir/gtest/test.cpp.o -c /home/ics46/projects/proj0/gtest/test.cpp
 
-CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ics46/projects/proj0/gtest/test1.cpp > CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.i
+CMakeFiles/a.out.gtest.dir/gtest/test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.out.gtest.dir/gtest/test.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ics46/projects/proj0/gtest/test.cpp > CMakeFiles/a.out.gtest.dir/gtest/test.cpp.i
 
-CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ics46/projects/proj0/gtest/test1.cpp -o CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.s
+CMakeFiles/a.out.gtest.dir/gtest/test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.out.gtest.dir/gtest/test.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ics46/projects/proj0/gtest/test.cpp -o CMakeFiles/a.out.gtest.dir/gtest/test.cpp.s
 
 CMakeFiles/a.out.gtest.dir/app/proj0.cpp.o: CMakeFiles/a.out.gtest.dir/flags.make
 CMakeFiles/a.out.gtest.dir/app/proj0.cpp.o: ../app/proj0.cpp
@@ -99,14 +99,14 @@ CMakeFiles/a.out.gtest.dir/app/proj0.cpp.s: cmake_force
 # Object files for target a.out.gtest
 a_out_gtest_OBJECTS = \
 "CMakeFiles/a.out.gtest.dir/gtest/gtestmain.cpp.o" \
-"CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.o" \
+"CMakeFiles/a.out.gtest.dir/gtest/test.cpp.o" \
 "CMakeFiles/a.out.gtest.dir/app/proj0.cpp.o"
 
 # External object files for target a.out.gtest
 a_out_gtest_EXTERNAL_OBJECTS =
 
 bin/a.out.gtest: CMakeFiles/a.out.gtest.dir/gtest/gtestmain.cpp.o
-bin/a.out.gtest: CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.o
+bin/a.out.gtest: CMakeFiles/a.out.gtest.dir/gtest/test.cpp.o
 bin/a.out.gtest: CMakeFiles/a.out.gtest.dir/app/proj0.cpp.o
 bin/a.out.gtest: CMakeFiles/a.out.gtest.dir/build.make
 bin/a.out.gtest: CMakeFiles/a.out.gtest.dir/link.txt

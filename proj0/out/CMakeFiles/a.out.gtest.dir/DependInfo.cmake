@@ -6,7 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ics46/projects/proj0/app/proj0.cpp" "/home/ics46/projects/proj0/out/CMakeFiles/a.out.gtest.dir/app/proj0.cpp.o"
   "/home/ics46/projects/proj0/gtest/gtestmain.cpp" "/home/ics46/projects/proj0/out/CMakeFiles/a.out.gtest.dir/gtest/gtestmain.cpp.o"
-  "/home/ics46/projects/proj0/gtest/test1.cpp" "/home/ics46/projects/proj0/out/CMakeFiles/a.out.gtest.dir/gtest/test1.cpp.o"
+  "/home/ics46/projects/proj0/gtest/test.cpp" "/home/ics46/projects/proj0/out/CMakeFiles/a.out.gtest.dir/gtest/test.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

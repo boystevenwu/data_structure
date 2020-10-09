@@ -24,6 +24,14 @@ unsigned int getValue(std::string s, const std::map<char, unsigned> & mapping) {
 
 bool verifySolution(std::string s1, std::string s2, std::string s3, const std::map<char, unsigned> & mapping)
 {
+    for (const std::string& s : {s1, s2, s3}) {
+        for (const char c : s) {
+            if (!mapping.count(c)) {
+                return false;
+            }
+        }
+    }
+    
     unsigned int sum = getValue(s1, mapping) + getValue(s2, mapping);
     return (sum == getValue(s3, mapping));
 }
