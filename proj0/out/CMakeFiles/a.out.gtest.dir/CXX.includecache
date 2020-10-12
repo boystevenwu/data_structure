@@ -12,6 +12,16 @@ map
 string
 -
 
+/home/ics46/projects/proj0/app/proj0.cpp
+proj0.hpp
+/home/ics46/projects/proj0/app/proj0.hpp
+
+/home/ics46/projects/proj0/app/proj0.hpp
+map
+-
+string
+-
+
 /home/ics46/projects/proj0/gtest/test.cpp
 gtest/gtest.h
 /home/ics46/projects/proj0/gtest/gtest/gtest.h

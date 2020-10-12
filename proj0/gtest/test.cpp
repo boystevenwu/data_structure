@@ -55,13 +55,13 @@ TEST(VerifySolution, Fourth){
 TEST(VerifySolution, Fifth){
     std::string s1 = "POT";
     std::string s2 = "PAN";
-    std::string s3 = "BIB";
+    std::string s3 = "NIB";
 
     std::map<char, unsigned> solution = { {'A', 7}, {'B', 5}, 
         {'I', 0}, {'N', 4}, {'O', 3}, {'P', 2}, {'T', 1}
     };
 
-    EXPECT_TRUE( verifySolution( s1, s2, s3, solution ) );
+    EXPECT_FALSE( verifySolution( s1, s2, s3, solution ) );
 }
 
 } // end namespace
