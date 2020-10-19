@@ -22,6 +22,10 @@ map
 string
 -
 
+/home/ics46/projects/proj0/gtest/gtestmain.cpp
+gtest/gtest.h
+-
+
 /home/ics46/projects/proj0/gtest/test.cpp
 gtest/gtest.h
 /home/ics46/projects/proj0/gtest/gtest/gtest.h

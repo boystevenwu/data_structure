@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/ics46/projects/proj0/app/main.cpp
+proj0.hpp
+/home/ics46/projects/proj0/app/proj0.hpp
+iostream
+-
+
 /home/ics46/projects/proj0/app/proj0.cpp
 proj0.hpp
 /home/ics46/projects/proj0/app/proj0.hpp
