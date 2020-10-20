@@ -1,8 +1,6 @@
 #ifndef __PROJ_1__HPP
 #define __PROJ_1__HPP
 
-#include <map>
-
 /* 
  * Project 1:  you need to implement this function.
  I promise that any of my test cases will have an empty 
@@ -14,7 +12,12 @@
  */
 
 
-bool puzzleSolver(std::string s1, std::string s2, std::string s3, std::map<char, unsigned> & mapping);
+#include <string>
+#include <map>
+
+bool puzzleSolver(const std::string& s1, const std::string& s2, const std::string& s3, std::map<char, unsigned> & mapping);
+
+bool checkMap(const std::string& s1, const std::string& s2, const std::string& s3, std::map<char, unsigned> & mapping);
 
 
 #endif

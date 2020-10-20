@@ -31,7 +31,7 @@ TEST(SimpleCases, NeatFind){
 
     bool p1 = puzzleSolver("UCI", "ALEX", "MIKE", puzzle);
     EXPECT_TRUE( p1 &&  gradeYesAnswer("UCI", "ALEX", "MIKE", puzzle) );
-} // end test two, "NeatFind"
+}
 
 
 TEST(SimpleCases, FirstNo){
@@ -42,5 +42,20 @@ TEST(SimpleCases, FirstNo){
     EXPECT_FALSE( p1 );
 }
 
+TEST(SimpleCases, Easy){
+
+    std::map<char, unsigned> puzzle;
+
+    bool p1 = puzzleSolver("ABC", "DEF", "HIJ", puzzle);
+    EXPECT_TRUE( p1 &&  gradeYesAnswer("ABC", "DEF", "HIJ", puzzle) );
+}
+
+TEST(SimpleCases, EasyNo){
+
+    std::map<char, unsigned> puzzle;
+
+    bool p1 = puzzleSolver("ABC", "DEF", "HJ", puzzle);
+    EXPECT_FALSE( p1 &&  gradeYesAnswer("ABC", "DEF", "HJ", puzzle) );
+}
 
 } // end namespace

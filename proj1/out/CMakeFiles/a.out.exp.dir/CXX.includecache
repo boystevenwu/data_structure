@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/ics46/projects/proj1/app/Resolver.cpp
-Resolver.hpp
-/home/ics46/projects/proj1/app/Resolver.hpp
+/home/ics46/projects/proj1/app/proj1.cpp
+proj1.hpp
+/home/ics46/projects/proj1/app/proj1.hpp
 iostream
 -
 set
@@ -18,23 +18,9 @@ queue
 list
 -
 
-/home/ics46/projects/proj1/app/Resolver.hpp
+/home/ics46/projects/proj1/app/proj1.hpp
 string
 -
 map
 -
-
-/home/ics46/projects/proj1/app/proj1.cpp
-proj1.hpp
-/home/ics46/projects/proj1/app/proj1.hpp
-map
--
-string
--
-
-/home/ics46/projects/proj1/app/proj1.hpp
-map
--
-
-/home/ics46/projects/proj1/exp/expmain.cpp
 

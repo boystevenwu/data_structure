@@ -6,35 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/ics46/projects/proj1/app/Resolver.cpp
-Resolver.hpp
-/home/ics46/projects/proj1/app/Resolver.hpp
-iostream
--
-set
--
-queue
--
-list
--
-
-/home/ics46/projects/proj1/app/Resolver.hpp
-string
--
-map
--
-
 /home/ics46/projects/proj1/app/main.cpp
-
-/home/ics46/projects/proj1/app/proj1.cpp
 proj1.hpp
 /home/ics46/projects/proj1/app/proj1.hpp
-map
--
-string
+iostream
 -
 
 /home/ics46/projects/proj1/app/proj1.hpp
+string
+-
 map
 -
 

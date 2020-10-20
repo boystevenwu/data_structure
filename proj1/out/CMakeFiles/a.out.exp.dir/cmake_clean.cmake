@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/a.out.exp.dir/app/Resolver.cpp.o"
   "CMakeFiles/a.out.exp.dir/app/proj1.cpp.o"
   "CMakeFiles/a.out.exp.dir/exp/expmain.cpp.o"
   "bin/a.out.exp"
