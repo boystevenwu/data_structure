@@ -1,3 +1,5 @@
+// This header file contians function declarations of project 1
+
 #ifndef __PROJ_1__HPP
 #define __PROJ_1__HPP
 

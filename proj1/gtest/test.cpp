@@ -66,4 +66,20 @@ TEST(SimpleCases, Haha){
     EXPECT_TRUE( p1 &&  gradeYesAnswer("ABCDE", "EDCBA", "HHHHH", puzzle) );
 }
 
+TEST(SimpleCases, TooMany){
+
+    std::map<char, unsigned> puzzle;
+
+    bool p1 = puzzleSolver("ABCWGZ", "ALEXDE", "OPQRTV", puzzle);
+    EXPECT_FALSE( p1 && gradeYesAnswer("ABCWGZ", "ALEXDE", "OPQRTV", puzzle) );
+}
+
+TEST(SimpleCases, Almost){
+
+    std::map<char, unsigned> puzzle;
+
+    bool p1 = puzzleSolver("ABCDE", "FGHIJ", "HJBCE", puzzle);
+    EXPECT_TRUE( p1 && gradeYesAnswer("ABCDE", "FGHIJ", "HJBCE", puzzle) );
+}
+
 } // end namespace
