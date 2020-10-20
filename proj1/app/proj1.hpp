@@ -17,7 +17,6 @@
 
 bool puzzleSolver(const std::string& s1, const std::string& s2, const std::string& s3, std::map<char, unsigned> & mapping);
 
-bool checkMap(const std::string& s1, const std::string& s2, const std::string& s3, std::map<char, unsigned> & mapping);
-
+bool checkMap(const std::string& s1, const std::string& s2, const std::string& s3, const std::map<char, unsigned> & mapping);
 
 #endif

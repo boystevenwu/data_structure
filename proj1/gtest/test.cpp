@@ -58,4 +58,12 @@ TEST(SimpleCases, EasyNo){
     EXPECT_FALSE( p1 &&  gradeYesAnswer("ABC", "DEF", "HJ", puzzle) );
 }
 
+TEST(SimpleCases, Haha){
+
+    std::map<char, unsigned> puzzle;
+
+    bool p1 = puzzleSolver("ABCDE", "EDCBA", "HHHHH", puzzle);
+    EXPECT_TRUE( p1 &&  gradeYesAnswer("ABCDE", "EDCBA", "HHHHH", puzzle) );
+}
+
 } // end namespace

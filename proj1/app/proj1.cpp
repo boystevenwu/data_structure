@@ -8,7 +8,7 @@
 #include <queue>
 #include <list>
 
-bool checkMap(const std::string& s1, const std::string& s2, const std::string& s3, std::map<char, unsigned>& mapping) {
+bool checkMap(const std::string& s1, const std::string& s2, const std::string& s3, const std::map<char, unsigned>& mapping) {
     std::queue<unsigned int> numbers;
 
     for (const std::string& s : {s1, s2, s3}) {
@@ -29,11 +29,11 @@ bool checkMap(const std::string& s1, const std::string& s2, const std::string& s
     return (a + b == c);
 }
 
-void worker(const std::string& s1, const std::string& s2, const std::string& s3,const std::set<char>& all_letters,
-            const std::list<unsigned int>& numbers, const std::queue<unsigned int>& queue, std::map<char, unsigned>& mapping) {
+std::map<char, unsigned> worker(const std::string& s1, const std::string& s2, const std::string& s3,const std::set<char>& all_letters,
+                                const std::list<unsigned int>& numbers, const std::queue<unsigned int>& queue) {
     std::list<unsigned int> num_temp = numbers;
     static unsigned int hold {10};
-    std::map<char, unsigned> map_temp;
+    std::map<char, unsigned> map_temp, result;
 
     for (const unsigned int n : numbers) {
         auto que_temp = queue;
@@ -53,41 +53,42 @@ void worker(const std::string& s1, const std::string& s2, const std::string& s3,
             }
 
             if (checkMap(s1, s2, s3, map_temp)) {
-                mapping = map_temp;
-                throw 1;
+                return map_temp;
             }
         }
         else {
-            worker(s1, s2, s3, all_letters, num_temp, que_temp, mapping);
+            result = worker(s1, s2, s3, all_letters, num_temp, que_temp);
         }
 
         hold = n;
+        
+        if (!result.empty()) {
+            return result;
+        }
     }
+
+    return result;
 }
 
 bool puzzleSolver(const std::string& s1, const std::string& s2, const std::string& s3, std::map<char, unsigned>& mapping) {
     std::list<unsigned int> numbers {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    std::set<char> all_letters;
     std::queue<unsigned int> queue;
-
+    std::set<char> all_letters;
     for (const std::string& s : {s1, s2, s3}) {
         for (char c : s) {
             all_letters.insert(c);
         }
     }
 
-    if (all_letters.size() < 10) {
-        try {
-            worker(s1, s2, s3, all_letters, numbers, queue, mapping);
-        }
-        catch (int i) {
-            for (auto item : mapping) {
-                std::cout << item.first << item.second << " ";
-            }
+    mapping = worker(s1, s2, s3, all_letters, numbers, queue);
 
-            return checkMap(s1, s2, s3, mapping);
-        }
+    if (mapping.empty()) {
+        return false;
     }
-
-    return false;
+    else {
+        for (auto item : mapping) {
+            std::cout << item.first << item.second << " ";
+        }
+        return checkMap(s1, s2, s3, mapping);
+    }
 }
