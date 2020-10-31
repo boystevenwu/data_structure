@@ -1,5 +1,3 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "modernize-use-nodiscard"
 #ifndef __PROJ2_QUEUE_HPP
 #define __PROJ2_QUEUE_HPP
 
@@ -76,7 +74,6 @@ LLQueue<Object>::LLQueue(const LLQueue & st)
     while (current != nullptr) {
         enqueue(current->item);
         current = current->next;
-        length += 1;
     }
 }
 
@@ -91,7 +88,6 @@ LLQueue<Object>& LLQueue<Object>::operator=(const LLQueue & st) {
     while (current != nullptr) {
         enqueue(current->item);
         current = current->next;
-        length += 1;
     }
 
     return *this;

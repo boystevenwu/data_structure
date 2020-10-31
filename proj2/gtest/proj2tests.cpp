@@ -19,7 +19,15 @@ TEST(QueueTest, QueueTest1)
 {
 	LLQueue<int> a;
 	a.enqueue(5);
+	a.enqueue(3);
+	a.enqueue(1);
 	EXPECT_TRUE( a.front() == 5 );
+
+    auto b = a;
+    EXPECT_TRUE( b.front() == 5 );
+
+    auto c {b};
+    EXPECT_TRUE( c.front() == 5 );
 }
 
 TEST(QueueTest, QueueTest2)
@@ -27,17 +35,60 @@ TEST(QueueTest, QueueTest2)
 	LLQueue<int> a;
 	a.enqueue(5);
 	a.enqueue(3);
-	EXPECT_TRUE( a.front() == 5 );
+    a.dequeue();
+    
+	EXPECT_TRUE( a.front() == 3 );
 }
 
 
 TEST(QueueTest, QueueTest3)
 {
-	LLQueue<int> a;
-	a.enqueue(5);
-	a.enqueue(3);
+	LLQueue<std::string> a;
+	a.enqueue("a");
+	a.enqueue("b");
+	a.enqueue("c");
+	a.enqueue("d");
+	a.enqueue("f");
+
+    auto b = a;
+
 	a.dequeue();
-	EXPECT_TRUE( a.front() == 3 );
+	EXPECT_TRUE( a.front() == "b" );
+
+	EXPECT_TRUE( b.front() == "a" );
+    EXPECT_TRUE( b.size() - 1 == a.size() );
+
+    while (b.size() > 0) {
+        b.dequeue();
+    }
+    EXPECT_TRUE( b.size() == 0);
+}
+
+TEST(QueueTest, QueueTest4)
+{
+	LLQueue<std::string> a;
+	a.enqueue("a");
+	a.enqueue("b");
+	a.enqueue("c");
+	a.enqueue("d");
+	a.enqueue("f");
+
+    auto b = a;
+
+	a.dequeue();
+    EXPECT_TRUE( b.size() - 1 == a.size() );
+
+    while (b.size() > 0) {
+        b.dequeue();
+    }
+    EXPECT_TRUE( b.size() == 0 );
+    
+    auto c {b};
+    EXPECT_TRUE( c.size() == 0 );
+
+    c = a;
+    EXPECT_TRUE( c.size() == a.size() );
+    EXPECT_TRUE( c.front() == "b" );
 }
 
 TEST(GraphTest, GraphTest1)
@@ -45,7 +96,7 @@ TEST(GraphTest, GraphTest1)
 	std::vector< std::vector<unsigned> > g1 = {
 		{1,2}, {0,3}, {0,3}, {1,2}
 	};
-		std::vector<unsigned> pathLengths(4);
+	std::vector<unsigned> pathLengths(4);
 	std::vector<unsigned> numShortestPaths(4);
 	
 	countPaths(g1, 0, pathLengths, numShortestPaths);
