@@ -1,8 +1,9 @@
+// This header file contains declarationss of countPath().
+
 #ifndef __PROJ_2_HPP
 #define __PROJ_2_HPP
 
 #include <vector>
-#include <iostream>
 
 // Friends is a vector where friends[i] is the list of who person i is friends with.
 //		Friendship  may be assumed to be symmetric for this project.

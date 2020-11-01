@@ -1,8 +1,10 @@
+// This header file contians declarations of class LLQueue, QeueuEmptyException
+// And member functions of LLQueue.
+
 #ifndef __PROJ2_QUEUE_HPP
 #define __PROJ2_QUEUE_HPP
 
 #include "runtimeexcept.hpp"
-#include <iostream>
 #include <memory>
 
 class QueueEmptyException : public RuntimeException 
@@ -12,6 +14,7 @@ public:
 };
 
 
+// A class emulates queue with linked list implementations, uses templates to be capable of initilizing with different types.
 template<typename Object>
 class LLQueue
 {
@@ -39,10 +42,7 @@ public:
 	// These should be "deep copies" -- copy the contents, not just a pointer to the front.
 	LLQueue(const LLQueue & st);
 	LLQueue & operator=(const LLQueue & st);
-	~LLQueue()
-	{
-		// You do need to implement the destructor though.
-	}
+	~LLQueue() { }
 
 	size_t size() const noexcept;
 	bool isEmpty() const noexcept;
@@ -52,12 +52,10 @@ public:
 	Object & front();
 	const Object & front() const;
 
-	void enqueue(const Object & elem);
+	void enqueue(const Object & elem) noexcept;
 
     // does not return anything.  Just removes.
 	void dequeue();
-
-    void print();
 };
 
 // Fill in the functions here.
@@ -104,18 +102,7 @@ bool LLQueue<Object>::isEmpty() const noexcept {
 }
 
 template<typename Object>
-void LLQueue<Object>::print() {
-    auto current {head};
-
-    while (current != nullptr) {
-        std::cout << current->item << " | ";
-        current = current->next;
-    }
-    std::cout << std::endl;
-}
-
-template<typename Object>
-void LLQueue<Object>::enqueue(const Object & elem) {
+void LLQueue<Object>::enqueue(const Object & elem) noexcept {
     auto temp = std::make_shared<Node>(elem);
 
     if (head == nullptr) { head = temp; }

@@ -94,15 +94,15 @@ TEST(QueueTest, QueueTest4)
 TEST(GraphTest, GraphTest1)
 {
 	std::vector< std::vector<unsigned> > g1 = {
-		{1,2}, {0,3}, {0,3}, {1,2}
+		{1,2}, {0,3}, {0,3}, {1,2,4}, {3, 5}, {4}
 	};
-	std::vector<unsigned> pathLengths(4);
-	std::vector<unsigned> numShortestPaths(4);
+	std::vector<unsigned> pathLengths(6);
+	std::vector<unsigned> numShortestPaths(6);
 	
 	countPaths(g1, 0, pathLengths, numShortestPaths);
 
-	std::vector<unsigned> expPathLengths = {0, 1, 1, 2};
-	std::vector<unsigned> expNumSP = {1, 1, 1, 2};
+	std::vector<unsigned> expPathLengths = {0, 1, 1, 2, 3, 4};
+	std::vector<unsigned> expNumSP = {1, 1, 1, 2, 2, 2};
 
 	EXPECT_TRUE(pathLengths == expPathLengths && expNumSP == numShortestPaths);
 
@@ -118,10 +118,10 @@ TEST(GraphTest, GraphTest2)
 	std::vector<unsigned> pathLengths(6);
 	std::vector<unsigned> numShortestPaths(6);
 	
-	countPaths(g1, 0, pathLengths, numShortestPaths);
+	countPaths(g1, 5, pathLengths, numShortestPaths);
 
-	std::vector<unsigned> expPathLengths = {0, 1, 1, 2, 1, 2};
-	std::vector<unsigned> expNumSP = {1, 1, 1, 2, 1, 1};
+	std::vector<unsigned> expPathLengths = {2, 2, 2, 1, 1, 0};
+	std::vector<unsigned> expNumSP = {1, 1, 1, 1, 1, 1};
 
 	EXPECT_TRUE(pathLengths == expPathLengths && expNumSP == numShortestPaths);
 }
@@ -143,4 +143,22 @@ TEST(GraphTest, GraphTest3)
 	EXPECT_TRUE(pathLengths == expPathLengths && expNumSP == numShortestPaths);
 
 }
+
+TEST(GraphTest, GraphTest4)
+{
+	std::vector< std::vector<unsigned> > g1 = {
+		{1, 2, 4}, {0,3,5}, {0,3,5}, {1,2,4}, {0,3,5}, {1,2,4}
+	};
+	
+	std::vector<unsigned> pathLengths(6);
+	std::vector<unsigned> numShortestPaths(6);
+	
+	countPaths(g1, 2, pathLengths, numShortestPaths);
+
+	std::vector<unsigned> expPathLengths = {1, 2, 0, 1, 2, 1};
+	std::vector<unsigned> expNumSP = {1, 3, 1, 1, 3, 1};
+
+	EXPECT_TRUE(pathLengths == expPathLengths && expNumSP == numShortestPaths);
+}
+
 }
