@@ -2,6 +2,7 @@
 #define __PROJ_2_HPP
 
 #include <vector>
+#include <iostream>
 
 // Friends is a vector where friends[i] is the list of who person i is friends with.
 //		Friendship  may be assumed to be symmetric for this project.
@@ -14,6 +15,4 @@
 // You are encouraged to read proj2tests.cpp in the gtest folder and attempt the three graph cases by hand.
 void countPaths(const std::vector< std::vector<unsigned> > & friends, unsigned start, std::vector<unsigned> & pathLengths, std::vector<unsigned> & numShortestPaths);
 
-
-
-#endif 
+#endif

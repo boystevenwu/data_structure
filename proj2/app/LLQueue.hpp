@@ -82,7 +82,6 @@ LLQueue<Object>& LLQueue<Object>::operator=(const LLQueue & st) {
     head = nullptr;
     rear = nullptr;
     length = 0;
-
     auto current {st.head};
 
     while (current != nullptr) {

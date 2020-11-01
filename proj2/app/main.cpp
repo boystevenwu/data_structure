@@ -1,62 +1,14 @@
 #include "LLQueue.hpp"
-#include <string>
+#include "proj2.hpp"
 
 int main()
 {
-    LLQueue<float> queue;
+    std::vector< std::vector<unsigned> > g1 = {
+            {1, 2, 4}, {0,3}, {0,3}, {1,2,5, 7}, {0, 5, 6}, {3, 4}, {4, 7}, {3, 6},    };
+    std::vector<unsigned> pathLengths(8);
+    std::vector<unsigned> numShortestPaths(8);
 
-    std::cout << queue.size() << " " << queue.isEmpty() << std::endl;
-    queue.print();
-
-    queue.enqueue(5);
-    queue.enqueue(3);
-    queue.enqueue(1);
-
-    std::cout << queue.size() << " " << queue.isEmpty() << std::endl;
-    queue.print();
-
-    queue.dequeue();
-    queue.dequeue();
-
-    std::cout << queue.size() << " " << queue.isEmpty() << std::endl;
-    queue.print();
-
-    std::cout << std::endl;
-
-    LLQueue<std::string> squeue;
-
-    std::cout << squeue.size() << " " << squeue.isEmpty() << std::endl;
-    squeue.print();
-
-    squeue.enqueue("nihao");
-    squeue.enqueue("hen");
-    squeue.enqueue("meili");
-
-    auto ssqueue {squeue};
-
-    std::cout << ssqueue.front() << " " << ssqueue.front() << std::endl;
-    ssqueue.print();
-
-    std::cout << squeue.front() << " " << squeue.front() << std::endl;
-    squeue.print();
-
-    squeue.dequeue();
-    squeue.dequeue();
-
-    std::cout << squeue.front() << " " << squeue.front() << std::endl;
-    squeue.print();
-
-    auto ueue {squeue};
-    std::cout << ueue.front() << " " << ueue.front() << std::endl;
-    ueue.print();
-
-    std::cout << ssqueue.front() << " " << ssqueue.front() << std::endl;
-    ssqueue.print();
-
-    ssqueue = ueue;
-
-    std::cout << ssqueue.front() << " " << ssqueue.front() << std::endl;
-    ssqueue.print();
+    countPaths(g1, 0, pathLengths, numShortestPaths);
 
     return 0;
 }
