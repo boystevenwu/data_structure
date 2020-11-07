@@ -5,6 +5,8 @@ const int SIZES[] = {13 , 29 , 59 , 127 , 257 , 521 , 1049 , 2099 , 4201 , 8419 
 // I promise no test case will require you to expand after 175447, or get to the associated load factor.
 
 #include <string>
+#include <memory>
+#include <iostream>
 
 // You may assume, in writing this function, that the given
 // string consists solely of lower-case letters.
@@ -15,7 +17,7 @@ const int SIZES[] = {13 , 29 , 59 , 127 , 257 , 521 , 1049 , 2099 , 4201 , 8419 
 // e.g., (s[0]-'a') is the most significant "digit" of s.
 // After every "digit" is processed, mod the current value by mod.
 // This will keep you from having overflow.
-int hashFunction(std::string s, int base, int mod);
+int hashFunction(const std::string& s, int base, int mod);
 
 
 class WordSet
@@ -24,6 +26,7 @@ public:
 	WordSet();
 	~WordSet();
 
+	void print() const;
 	// adds the given string to the WordSet, so that any 
 	// future calls to contains(s) will return true.
 	// Note that we are not implementing remove in this
@@ -36,9 +39,9 @@ public:
 	// string has been inserted, before returning, versus
 	// at the start of the next insert function.
 	// Use the declared hash function as your hash function.
-	void insert(std::string s);
+	void insert(const std::string& s);
 
-	bool contains(std::string s) const;
+	bool contains(const std::string& s) const;
 
 	// return how many distinct strings are in the set
 	int getCount() const; 
@@ -48,6 +51,22 @@ public:
 
 private:
 	// You may declare private functions and member variables here.
+	std::string get(int index) const;
+
+    struct Node {
+        std::string item;
+        int probe;
+
+        explicit Node(const std::string& s = "", int p = 0) {
+            item = s;
+            probe = p;
+        }
+    };
+
+    int capacity;
+    int count;
+
+	std::unique_ptr<Node[]> hash_table;
 };
 
 

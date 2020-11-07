@@ -1,4 +1,5 @@
 #include "proj2.hpp"
+#include <iostream>
 
 /**
  * Perform a breadth first traversal in the graph
@@ -34,6 +35,11 @@ void dfs(const std::vector< std::vector<unsigned> > & friends, const std::vector
     for (unsigned i : wait_list) {
         curr_visit[i] = 1;
         if (step == dist[i]) { path[i] += 1; }
+
+//        for (unsigned i : curr_visit) {
+//            std::cout << i << " ";
+//        }
+//        std::cout << std::endl;
 
         std::vector<unsigned> adjacent;
         for (unsigned j : friends[i]) {
