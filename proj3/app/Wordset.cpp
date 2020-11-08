@@ -1,29 +1,29 @@
 #include "Wordset.hpp"
+#include <iostream>
+#include <cmath>
 
 const int BASE_TO_USE = 41; 
 const double LOAD_LIMIT = 0.27;
 
 
 // returns s, as a number in the given base, mod the given modulus
-int hashFunction(const std::string& item)
+int hashFunction(const std::string& item, int base, int mod)
 {
-    int result = 0;
-    for (char i : item) {
-        result += (int)i;
+    double result = 0;
+    unsigned length = item.length() - 1;
+
+    for (int i = 0; i <= length; ++i) {
+        result += item[length-i] * pow(base, i);
     }
-    return result;
+    return int(result);
 }
 
 
-WordSet::WordSet() : capacity{ 10 }, count{ 0 }, hash_table{ new Node[capacity] } {
+WordSet::WordSet() : level { 0 }, count{ 0 }, capacity{ SIZES[level] }, hash_table{ new Node[capacity] } {
 
 }
 
 WordSet::~WordSet() = default;
-
-std::string WordSet::get(int hash) const {
-    return hash_table[hash % 10].item;
-}
 
 void WordSet::print() const {
     for (int i = 0; i < capacity; ++i) {
@@ -32,14 +32,17 @@ void WordSet::print() const {
     std::cout << std::endl;
 }
 
-void WordSet::insert(const std::string& s)
-{
-    int hash {hashFunction(s)};
+std::string WordSet::get(int hash) const {
+    return hash_table[hash % capacity].item;
+}
+
+void WordSet::add(const std::string& s) {
+    int hash {hashFunction(s, BASE_TO_USE, capacity)};
     int i {0};
 
     while (true) {
         hash += i * i;
-        std::cout << hash % 10 << " ";
+        std::cout << hash % capacity << " ";
         if (get(hash).empty()) {
             std::cout << std::endl;
             break;
@@ -51,14 +54,19 @@ void WordSet::insert(const std::string& s)
     }
 
 
-    hash_table[hash % 10] = Node(s, i);
+    hash_table[hash % capacity] = Node(s, i);
     count ++;
+}
+
+void WordSet::insert(const std::string& s)
+{
+    add(s);
 }
 
 
 bool WordSet::contains(const std::string& s) const
 {
-    int hash {hashFunction(s)};
+    int hash {hashFunction(s, BASE_TO_USE, capacity)};
     int i {0};
 
     while (true) {

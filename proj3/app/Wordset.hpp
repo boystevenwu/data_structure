@@ -6,7 +6,7 @@ const int SIZES[] = {13 , 29 , 59 , 127 , 257 , 521 , 1049 , 2099 , 4201 , 8419 
 
 #include <string>
 #include <memory>
-#include <iostream>
+
 
 // You may assume, in writing this function, that the given
 // string consists solely of lower-case letters.
@@ -53,6 +53,8 @@ private:
 	// You may declare private functions and member variables here.
 	std::string get(int index) const;
 
+	void add(const std::string& s);
+
     struct Node {
         std::string item;
         int probe;
@@ -63,6 +65,7 @@ private:
         }
     };
 
+    int level;
     int capacity;
     int count;
 
