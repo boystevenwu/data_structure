@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cmath>
 
-const int BASE_TO_USE = 41; 
+const int BASE_TO_USE = 10; 
 const double LOAD_LIMIT = 0.27;
 
 
@@ -13,9 +13,8 @@ int hashFunction(const std::string& item, int base, int mod)
     unsigned length = item.length() - 1;
 
     for (int i = 0; i <= length; ++i) {
-        result += item[length-i] * pow(base, i);
+        result += (item[length-i]-97) * pow(base, i);
     }
-
     return int(result);
 }
 
@@ -45,9 +44,8 @@ void WordSet::add(const std::string& s) {
 
     while (true) {
         hash += i * i;
-        std::cout << hash % capacity << " ";
+
         if (get(hash).empty()) {
-            std::cout << std::endl;
             break;
         }
         else {
@@ -65,7 +63,7 @@ void WordSet::insert(const std::string& s)
     add(s);
 
     if (count > LOAD_LIMIT * capacity) {
-        Node temp[capacity];
+        Node* temp = new Node[capacity];
         for (int i = 0; i < capacity; ++i) {
             temp[i] = hash_table[i];
         }
@@ -83,6 +81,7 @@ void WordSet::insert(const std::string& s)
             }
         }
 
+        delete[] temp;
     }
 }
 
