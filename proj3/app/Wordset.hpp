@@ -2,10 +2,9 @@
 #define __WORD_SET_P3__HPP
 
 const int SIZES[] = {13 , 29 , 59 , 127 , 257 , 521 , 1049 , 2099 , 4201 , 8419 , 16843 , 33703 , 67409 , 134837 , 269683 };
-// I promise no test case will require you to expand after 175447, or get to the associated load factor.
+// I promise no test case will require you to expand after 269683, or get to the associated load factor.
 
 #include <string>
-#include <memory>
 
 
 // You may assume, in writing this function, that the given
@@ -66,10 +65,10 @@ private:
     };
 
     int level;
-    int capacity;
     int count;
+    int capacity;
 
-	std::unique_ptr<Node[]> hash_table;
+    Node* hash_table;
 };
 
 

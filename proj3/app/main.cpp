@@ -15,13 +15,15 @@ int main()
     w.insert("abc");
     w.insert("hjkl");
     w.insert("what");
+    w.print();
+    std::cout << w.getCapacity() << " " << w.getCount() << std::endl;
+
     w.insert("yoyo");
     w.insert("sweet");
     w.insert("right");
     w.insert("ok");
-
     w.print();
-    std::cout << std::endl << w.getCapacity() << " " << w.getCount() << std::endl;
+    std::cout << w.getCapacity() << " " << w.getCount() << std::endl;
 
     std::cout << w.contains("right") << std::endl;
     std::cout << w.contains("rrgtt") << std::endl;

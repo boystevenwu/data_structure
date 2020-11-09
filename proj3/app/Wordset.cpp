@@ -15,6 +15,7 @@ int hashFunction(const std::string& item, int base, int mod)
     for (int i = 0; i <= length; ++i) {
         result += item[length-i] * pow(base, i);
     }
+
     return int(result);
 }
 
@@ -23,7 +24,9 @@ WordSet::WordSet() : level { 0 }, count{ 0 }, capacity{ SIZES[level] }, hash_tab
 
 }
 
-WordSet::~WordSet() = default;
+WordSet::~WordSet() {
+    delete[] hash_table;
+}
 
 void WordSet::print() const {
     for (int i = 0; i < capacity; ++i) {
@@ -53,7 +56,6 @@ void WordSet::add(const std::string& s) {
         }
     }
 
-
     hash_table[hash % capacity] = Node(s, i);
     count ++;
 }
@@ -61,6 +63,27 @@ void WordSet::add(const std::string& s) {
 void WordSet::insert(const std::string& s)
 {
     add(s);
+
+    if (count > LOAD_LIMIT * capacity) {
+        Node temp[capacity];
+        for (int i = 0; i < capacity; ++i) {
+            temp[i] = hash_table[i];
+        }
+
+        level += 1;
+        count = 0;
+        capacity = SIZES[level];
+
+        delete[] hash_table;
+        hash_table = new Node[capacity];
+
+        for (int i = 0; i < SIZES[level-1]; ++i) {
+            if (!temp[i].item.empty()) {
+                add(temp[i].item);
+            }
+        }
+
+    }
 }
 
 
