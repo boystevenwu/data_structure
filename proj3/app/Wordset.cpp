@@ -2,24 +2,26 @@
 #include <iostream>
 #include <cmath>
 
-const int BASE_TO_USE = 10; 
+const int BASE_TO_USE = 41; 
 const double LOAD_LIMIT = 0.27;
 
 
 // returns s, as a number in the given base, mod the given modulus
 int hashFunction(const std::string& item, int base, int mod)
 {
-    double result = 0;
-    unsigned length = item.length() - 1;
+    int result = 0;
+    int length = item.length() - 1;
 
     for (int i = 0; i <= length; ++i) {
-        result += (item[length-i]-97) * pow(base, i);
+        result += fmod((item[length-i]-97) * pow(base, i), mod);
     }
-    return int(result);
+
+    return fmod(result, mod);
 }
 
 
-WordSet::WordSet() : level { 0 }, count{ 0 }, capacity{ SIZES[level] }, hash_table{ new Node[capacity] } {
+WordSet::WordSet() 
+    : level { 0 }, count{ 0 }, capacity{ SIZES[level] }, hash_table{ new Node[capacity] } {
 
 }
 
@@ -35,7 +37,7 @@ void WordSet::print() const {
 }
 
 std::string WordSet::get(int hash) const {
-    return hash_table[hash % capacity].item;
+    return hash_table[hash].item;
 }
 
 void WordSet::add(const std::string& s) {
@@ -43,18 +45,18 @@ void WordSet::add(const std::string& s) {
     int i {0};
 
     while (true) {
-        hash += i * i;
+        auto temp {hash};
+        hash += fmod(i * i, capacity);
+        hash = fmod(hash, capacity);
 
         if (get(hash).empty()) {
             break;
         }
-        else {
-            hash -= i * i;
-            i ++;
-        }
+        hash = temp;
+        i ++;
     }
 
-    hash_table[hash % capacity] = Node(s, i);
+    hash_table[hash] = Node(s, i);
     count ++;
 }
 
@@ -92,7 +94,9 @@ bool WordSet::contains(const std::string& s) const
     int i {0};
 
     while (true) {
-        hash += i * i;
+        auto temp {hash};
+        hash += fmod(i * i, capacity);
+        hash = fmod(hash, capacity);
 
         if (get(hash) == s) {
             return true;
@@ -101,7 +105,7 @@ bool WordSet::contains(const std::string& s) const
             return false;
         }
 
-        hash -= i * i;
+        hash = temp;
         i ++;
     }
 }
