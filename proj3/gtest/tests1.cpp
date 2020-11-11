@@ -116,4 +116,15 @@ TEST(ConvertWords, what)
  	EXPECT_TRUE(r == "rogue --> vogue --> vague --> value --> valve --> halve --> helve --> heave --> leave --> lease --> least --> beast");
 }
 
+	
+TEST(ConvertWords, YardToLaws)
+{
+	WordSet words;
+	std::ifstream in("words.txt");
+	loadWordsIntoTable(words, in);
+
+ 	std::string r = convert("yard", "laws", words);
+ 	EXPECT_TRUE(r == "yard --> yarn --> yawn --> lawn --> laws");
+}
+	
 }
