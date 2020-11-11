@@ -106,6 +106,14 @@ TEST(ConvertWords, ZeroToZeal)
  	EXPECT_TRUE(r == "zero --> hero --> herd --> head --> heal --> zeal");
 }
 
+TEST(ConvertWords, what)
+{
+	WordSet words;
+	std::ifstream in("words.txt");
+	loadWordsIntoTable(words, in);
 
+ 	std::string r = convert("rogue", "beast", words);
+ 	EXPECT_TRUE(r == "rogue --> vogue --> vague --> value --> valve --> halve --> helve --> heave --> leave --> lease --> least --> beast");
+}
 
 }
