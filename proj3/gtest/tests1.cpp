@@ -71,8 +71,6 @@ TEST(SampleTest, Abandoning)
 	EXPECT_TRUE(words.contains("abandoning"));
 }
 
-
-/*
 TEST(ConvertWords, AntToArt)
 {
 	WordSet words;
@@ -97,9 +95,16 @@ TEST(ConvertWords, AntToEat)
  	// So maybe confirm if yours is right or not if this test appears to be failing.
  	// I will be verifying it differently when I grade this assignment.
 }
-*/
 
+TEST(ConvertWords, ZeroToZeal)
+{
+	WordSet words;
+	std::ifstream in("words.txt");
+	loadWordsIntoTable(words, in);
 
+ 	std::string r = convert("zero", "zeal", words);
+ 	EXPECT_TRUE(r == "zero --> hero --> herd --> head --> heal --> zeal");
+}
 
 
 
