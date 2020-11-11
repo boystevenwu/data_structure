@@ -63,10 +63,16 @@ std::string convert(const std::string& s1, const std::string& s2, const WordSet 
     }
 
     std::string bird {s2};
+    std::stack<std::string> eagle;
     std::stringstream result;
     while (bird != s1) {
-        result << bird << " --> ";
+        eagle.push(bird);
         bird = relation.find(bird)->second;
+    }
+    while (bird != s2) {
+        result << bird << " --> ";
+        bird = eagle.top();
+        eagle.pop();
     }
     result << bird;
 
