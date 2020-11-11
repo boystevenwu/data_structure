@@ -101,7 +101,6 @@ TEST(ConvertWords, ZeroToZeal)
 	WordSet words;
 	std::ifstream in("words.txt");
 	loadWordsIntoTable(words, in);
-<<<<<<< HEAD
 
  	std::string r = convert("zero", "zeal", words);
  	EXPECT_TRUE(r == "zero --> hero --> herd --> head --> heal --> zeal");
@@ -119,40 +118,14 @@ TEST(ConvertWords, what)
 
 	
 TEST(ConvertWords, YardToLaws)
-=======
-
- 	std::string r = convert("zero", "zeal", words);
- 	EXPECT_TRUE(r == "zero --> hero --> herd --> head --> heal --> zeal");
-}
-
-TEST(ConvertWords, what)
->>>>>>> origin/master
 {
 	WordSet words;
 	std::ifstream in("words.txt");
 	loadWordsIntoTable(words, in);
-<<<<<<< HEAD
 
  	std::string r = convert("yard", "laws", words);
  	EXPECT_TRUE(r == "yard --> yarn --> yawn --> lawn --> laws");
 }
 	
-=======
 
- 	std::string r = convert("rogue", "beast", words);
- 	EXPECT_TRUE(r == "rogue --> vogue --> vague --> value --> valve --> halve --> helve --> heave --> leave --> lease --> least --> beast");
-}
-
-	
-TEST(ConvertWords, YardToLaws)
-{
-	WordSet words;
-	std::ifstream in("words.txt");
-	loadWordsIntoTable(words, in);
->>>>>>> origin/master
-
- 	std::string r = convert("yard", "laws", words);
- 	EXPECT_TRUE(r == "yard --> yarn --> yawn --> lawn --> laws");
-}
-	
 }
