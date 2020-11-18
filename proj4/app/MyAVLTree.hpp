@@ -4,6 +4,7 @@
 #include "runtimeexcept.hpp"
 #include <string>
 #include <vector>
+#include <iostream>
 
 class ElementNotFoundException : public RuntimeException 
 {
@@ -20,13 +21,15 @@ private:
     {
         Key key;
         Value value;
-        Node* next;
+        Node* left;
+        Node* right;
         explicit Node(Key k, Value v)
-            : key{k}, value{v}, next{nullptr} { }
+            : key{k}, value{v}, left{nullptr}, right{nullptr} { }
     };
 
+    Node*& compass(Node*& ptr, const Key &k) const;
+
     Node* head;
-    Node* tail;
 
     size_t length;
 
@@ -43,13 +46,7 @@ public:
 	// The destructor is, however, required. 
 	~MyAVLTree()
 	{
-        Node* current = head;
 
-        while (current != nullptr) {
-            auto temp = current;
-            current = current->next;
-            delete temp;
-        }
 	}
 
 	// size() returns the number of distinct keys in the tree.
@@ -95,7 +92,7 @@ public:
 
 
 template<typename Key, typename Value>
-MyAVLTree<Key,Value>::MyAVLTree() : head{nullptr}, tail{nullptr}, length{0}
+MyAVLTree<Key,Value>::MyAVLTree() : head{nullptr}, length{0}
 {
 
 }
@@ -112,20 +109,24 @@ bool MyAVLTree<Key, Value>::isEmpty() const noexcept
     return length == 0;
 }
 
+template<typename Key, typename Value>
+typename MyAVLTree<Key, Value>::Node*& MyAVLTree<Key, Value>::compass(Node*& current, const Key &k) const
+{
+    return k < current->key ? current->left:current->right;
+}
 
 template<typename Key, typename Value>
 bool MyAVLTree<Key, Value>::contains(const Key &k) const
 {
-    Node* current = head;
+    auto current = head;
 
 	while (current != nullptr) {
-	    if (current->key == k) { return true; }
-	    else { current = current->next; }
+        if (current->key == k) { return true; }
+	    else { current = compass(current, k); }
 	}
 
 	return false;
 }
-
 
 template<typename Key, typename Value>
 Value & MyAVLTree<Key, Value>::find(const Key & k)
@@ -135,7 +136,7 @@ Value & MyAVLTree<Key, Value>::find(const Key & k)
 
     while (current != nullptr) {
         if (current->key == k) { v = current->value; }
-        else { current = current->next; }
+        else { current = compass(current, k); }
     }
 
 	return v;
@@ -149,7 +150,7 @@ const Value & MyAVLTree<Key, Value>::find(const Key & k) const
 
     while (current != nullptr) {
         if (current->key == k) { v = current->value; }
-        else { current = current->next; }
+        else { current = compass(current, k); }
     }
 
     return v;
@@ -158,13 +159,19 @@ const Value & MyAVLTree<Key, Value>::find(const Key & k) const
 template<typename Key, typename Value>
 void MyAVLTree<Key, Value>::insert(const Key & k, const Value & v)
 {
-	Node* temp = new Node(k, v);
+    if (length == 0) {
+        head = new Node(k,v);
+    }
+    else {
+        auto current = head;
 
-    if (head == nullptr) { head = temp; }
-    else { tail->next = temp; }
+        while (compass(current, k) != nullptr) {
+            current = compass(current, k);
+        }
+        compass(current, k) = new Node(k, v);
+    }
 
-    tail = temp;
-    length += 1;
+    length ++;
 }
 
 
