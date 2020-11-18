@@ -33,6 +33,8 @@ private:
 	
 	//Add Here -oh
 	void inOrderHelp(Node* head, std::vector<Key>& foo) const;
+	void preOrderHelp(Node* head, std::vector<Key>& foo) const;
+	void postOrderHelp(Node* head, std::vector<Key>& foo) const;
 
     size_t length;
 
@@ -185,6 +187,21 @@ void MyAVLTree<Key, Value>::insert(const Key & k, const Value & v)
 // 	return foo; 
 // }
 
+// template<typename Key, typename Value>
+// std::vector<Key> MyAVLTree<Key, Value>::preOrder() const
+// {
+// 	std::vector<Key> foo;
+// 	return foo; 
+// }
+
+
+// template<typename Key, typename Value>
+// std::vector<Key> MyAVLTree<Key, Value>::postOrder() const
+// {
+// 	std::vector<Key> foo;
+// 	return foo; 
+// }
+
 // Add Here - oh
 template<typename Key, typename Value>
 void MyAVLTree<Key, Value>::inOrderHelp(Node* head, std::vector<Key>& foo) const
@@ -209,21 +226,49 @@ std::vector<Key> MyAVLTree<Key, Value>::inOrder() const
 	return foo; 
 }
 
+template<typename Key, typename Value>
+void MyAVLTree<Key, Value>::preOrderHelp(Node* head, std::vector<Key>& foo) const
+{
+	if (head == nullptr)
+	{
+		return;
+	}
 
-
+	foo.push_back(head -> key);
+	preOrderHelp(head -> left, foo);
+	preOrderHelp(head -> right, foo);
+}
 
 template<typename Key, typename Value>
 std::vector<Key> MyAVLTree<Key, Value>::preOrder() const
 {
 	std::vector<Key> foo;
+
+	preOrderHelp(head, foo);
+
 	return foo; 
 }
 
 
 template<typename Key, typename Value>
+void MyAVLTree<Key, Value>::postOrderHelp(Node* head, std::vector<Key>& foo) const
+{
+	if (head == nullptr)
+	{
+		return;
+	}
+	postOrderHelp(head -> left, foo);
+	postOrderHelp(head -> right, foo);
+	foo.push_back(head -> key);
+}
+
+template<typename Key, typename Value>
 std::vector<Key> MyAVLTree<Key, Value>::postOrder() const
 {
 	std::vector<Key> foo;
+
+	postOrderHelp(head, foo);
+
 	return foo; 
 }
 
