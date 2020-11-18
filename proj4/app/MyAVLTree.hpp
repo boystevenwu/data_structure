@@ -29,7 +29,10 @@ private:
 
     Node*& compass(Node*& ptr, const Key &k) const;
 
-    Node* head;
+    Node* head; 
+	
+	//Add Here -oh
+	void inOrderHelp(Node* head, std::vector<Key>& foo) const;
 
     size_t length;
 
@@ -175,12 +178,38 @@ void MyAVLTree<Key, Value>::insert(const Key & k, const Value & v)
 }
 
 
+// template<typename Key, typename Value>
+// std::vector<Key> MyAVLTree<Key, Value>::inOrder() const
+// {
+// 	std::vector<Key> foo;
+// 	return foo; 
+// }
+
+// Add Here - oh
+template<typename Key, typename Value>
+void MyAVLTree<Key, Value>::inOrderHelp(Node* head, std::vector<Key>& foo) const
+{
+	if (head == nullptr)
+	{
+		return;
+	}
+
+	inOrderHelp(head -> left, foo);
+	foo.push_back(head -> key);
+	inOrderHelp(head -> right, foo);
+}
+
 template<typename Key, typename Value>
 std::vector<Key> MyAVLTree<Key, Value>::inOrder() const
 {
 	std::vector<Key> foo;
+
+	inOrderHelp(head, foo);
+
 	return foo; 
 }
+
+
 
 
 template<typename Key, typename Value>
