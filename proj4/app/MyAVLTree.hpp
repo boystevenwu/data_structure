@@ -16,8 +16,19 @@ template<typename Key, typename Value>
 class MyAVLTree
 {
 private:
-	// fill in private member data here
-	// If you need to declare private functions, do so here too.
+    struct Node
+    {
+        Key key;
+        Value value;
+        Node* next;
+        explicit Node(Key k, Value v)
+            : key{k}, value{v}, next{nullptr} { }
+    };
+
+    Node* head;
+    Node* tail;
+
+    size_t length;
 
 public:
 	MyAVLTree();
@@ -32,7 +43,13 @@ public:
 	// The destructor is, however, required. 
 	~MyAVLTree()
 	{
-		// TODO
+        Node* current = head;
+
+        while (current != nullptr) {
+            auto temp = current;
+            current = current->next;
+            delete temp;
+        }
 	}
 
 	// size() returns the number of distinct keys in the tree.
@@ -42,8 +59,8 @@ public:
 	bool isEmpty() const noexcept;
 
 	// contains() returns true if and only if there
-	//  is a (key, value) pair in the tree
-	//	that has the given key as its key.
+	// is a (key, value) pair in the tree
+	// that has the given key as its key.
 	bool contains(const Key & k) const; 
 
 	// find returns the value associated with the given key
@@ -78,7 +95,7 @@ public:
 
 
 template<typename Key, typename Value>
-MyAVLTree<Key,Value>::MyAVLTree()
+MyAVLTree<Key,Value>::MyAVLTree() : head{nullptr}, tail{nullptr}, length{0}
 {
 
 }
@@ -86,45 +103,69 @@ MyAVLTree<Key,Value>::MyAVLTree()
 template<typename Key, typename Value>
 size_t MyAVLTree<Key, Value>::size() const noexcept
 {
-	return 0; // stub
+	return length;
 }
 
 template<typename Key, typename Value>
 bool MyAVLTree<Key, Value>::isEmpty() const noexcept
 {
-	return true; // stub
+    return length == 0;
 }
 
 
 template<typename Key, typename Value>
 bool MyAVLTree<Key, Value>::contains(const Key &k) const
 {
-	return false; // stub
-}
+    Node* current = head;
 
+	while (current != nullptr) {
+	    if (current->key == k) { return true; }
+	    else { current = current->next; }
+	}
+
+	return false;
+}
 
 
 template<typename Key, typename Value>
 Value & MyAVLTree<Key, Value>::find(const Key & k)
 {
 	Value v;
-	return v; // not only a stub, but a terrible idea.
+    Node* current = head;
+
+    while (current != nullptr) {
+        if (current->key == k) { v = current->value; }
+        else { current = current->next; }
+    }
+
+	return v;
 }
 
 template<typename Key, typename Value>
 const Value & MyAVLTree<Key, Value>::find(const Key & k) const
 {
-	Value v;
-	return v; // not only a stub, but a terrible idea.
+    Value v;
+    Node* current = head;
+
+    while (current != nullptr) {
+        if (current->key == k) { v = current->value; }
+        else { current = current->next; }
+    }
+
+    return v;
 }
 
 template<typename Key, typename Value>
 void MyAVLTree<Key, Value>::insert(const Key & k, const Value & v)
 {
-	return; 	
+	Node* temp = new Node(k, v);
+
+    if (head == nullptr) { head = temp; }
+    else { tail->next = temp; }
+
+    tail = temp;
+    length += 1;
 }
-
-
 
 
 template<typename Key, typename Value>
@@ -151,9 +192,4 @@ std::vector<Key> MyAVLTree<Key, Value>::postOrder() const
 }
 
 
-
-
-
-
-
-#endif 
+#endif
