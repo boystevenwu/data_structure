@@ -27,14 +27,23 @@ private:
             : key{k}, value{v}, left{nullptr}, right{nullptr} { }
     };
 
-    Node*& compass(Node*& ptr, const Key &k) const;
+    Node*& compass(Node* current, const Key &k) const;
 
     Node* head; 
 	
 	//Add Here -oh
-	void inOrderHelp(Node* head, std::vector<Key>& foo) const;
-	void preOrderHelp(Node* head, std::vector<Key>& foo) const;
-	void postOrderHelp(Node* head, std::vector<Key>& foo) const;
+	void inOrderHelp(Node* current, std::vector<Key>& foo) const;
+	void preOrderHelp(Node* current, std::vector<Key>& foo) const;
+	void postOrderHelp(Node* current, std::vector<Key>& foo) const;
+
+	void deleteHelp(Node* current) {
+        if (current == nullptr) { return; }
+
+        deleteHelp(current -> left);
+        deleteHelp(current -> right);
+
+        delete current;
+	}
 
     size_t length;
 
@@ -51,7 +60,7 @@ public:
 	// The destructor is, however, required. 
 	~MyAVLTree()
 	{
-
+        deleteHelp(head);
 	}
 
 	// size() returns the number of distinct keys in the tree.
@@ -115,7 +124,7 @@ bool MyAVLTree<Key, Value>::isEmpty() const noexcept
 }
 
 template<typename Key, typename Value>
-typename MyAVLTree<Key, Value>::Node*& MyAVLTree<Key, Value>::compass(Node*& current, const Key &k) const
+typename MyAVLTree<Key, Value>::Node*& MyAVLTree<Key, Value>::compass(Node* current, const Key &k) const
 {
     return k < current->key ? current->left:current->right;
 }
@@ -136,29 +145,27 @@ bool MyAVLTree<Key, Value>::contains(const Key &k) const
 template<typename Key, typename Value>
 Value & MyAVLTree<Key, Value>::find(const Key & k)
 {
-	Value v;
-    Node* current = head;
+    auto current = head;
 
     while (current != nullptr) {
-        if (current->key == k) { v = current->value; }
+        if (current->key == k) { return current->value; }
         else { current = compass(current, k); }
     }
 
-	return v;
+    throw ElementNotFoundException("Cannot find key");
 }
 
 template<typename Key, typename Value>
 const Value & MyAVLTree<Key, Value>::find(const Key & k) const
 {
-    Value v;
-    Node* current = head;
+    auto current = head;
 
     while (current != nullptr) {
-        if (current->key == k) { v = current->value; }
+        if (current->key == k) { return current->value; }
         else { current = compass(current, k); }
     }
 
-    return v;
+    throw ElementNotFoundException("Cannot find key");
 }
 
 template<typename Key, typename Value>
@@ -204,16 +211,13 @@ void MyAVLTree<Key, Value>::insert(const Key & k, const Value & v)
 
 // Add Here - oh
 template<typename Key, typename Value>
-void MyAVLTree<Key, Value>::inOrderHelp(Node* head, std::vector<Key>& foo) const
+void MyAVLTree<Key, Value>::inOrderHelp(Node* current, std::vector<Key>& foo) const
 {
-	if (head == nullptr)
-	{
-		return;
-	}
+	if (current == nullptr) { return; }
 
-	inOrderHelp(head -> left, foo);
-	foo.push_back(head -> key);
-	inOrderHelp(head -> right, foo);
+	inOrderHelp(current -> left, foo);
+	foo.push_back(current -> key);
+	inOrderHelp(current -> right, foo);
 }
 
 template<typename Key, typename Value>
@@ -227,16 +231,13 @@ std::vector<Key> MyAVLTree<Key, Value>::inOrder() const
 }
 
 template<typename Key, typename Value>
-void MyAVLTree<Key, Value>::preOrderHelp(Node* head, std::vector<Key>& foo) const
+void MyAVLTree<Key, Value>::preOrderHelp(Node* current, std::vector<Key>& foo) const
 {
-	if (head == nullptr)
-	{
-		return;
-	}
+	if (current == nullptr) { return; }
 
-	foo.push_back(head -> key);
-	preOrderHelp(head -> left, foo);
-	preOrderHelp(head -> right, foo);
+	foo.push_back(current -> key);
+	preOrderHelp(current -> left, foo);
+	preOrderHelp(current -> right, foo);
 }
 
 template<typename Key, typename Value>
@@ -251,15 +252,13 @@ std::vector<Key> MyAVLTree<Key, Value>::preOrder() const
 
 
 template<typename Key, typename Value>
-void MyAVLTree<Key, Value>::postOrderHelp(Node* head, std::vector<Key>& foo) const
+void MyAVLTree<Key, Value>::postOrderHelp(Node* current, std::vector<Key>& foo) const
 {
-	if (head == nullptr)
-	{
-		return;
-	}
-	postOrderHelp(head -> left, foo);
-	postOrderHelp(head -> right, foo);
-	foo.push_back(head -> key);
+	if (current == nullptr) { return; }
+
+	postOrderHelp(current -> left, foo);
+	postOrderHelp(current -> right, foo);
+	foo.push_back(current -> key);
 }
 
 template<typename Key, typename Value>
