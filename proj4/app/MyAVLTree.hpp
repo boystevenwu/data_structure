@@ -274,9 +274,7 @@ template<typename Key, typename Value>
 std::vector<Key> MyAVLTree<Key, Value>::inOrder() const
 {
 	std::vector<Key> foo;
-
 	inOrderHelp(root, foo);
-
 	return foo; 
 }
 
@@ -294,9 +292,7 @@ template<typename Key, typename Value>
 std::vector<Key> MyAVLTree<Key, Value>::preOrder() const
 {
 	std::vector<Key> foo;
-
 	preOrderHelp(root, foo);
-
 	return foo; 
 }
 
@@ -315,9 +311,7 @@ template<typename Key, typename Value>
 std::vector<Key> MyAVLTree<Key, Value>::postOrder() const
 {
 	std::vector<Key> foo;
-
 	postOrderHelp(root, foo);
-
 	return foo; 
 }
 
