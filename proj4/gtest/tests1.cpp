@@ -156,13 +156,13 @@ TEST(PostCheckPoint, PreOrderTraversal_lr)
 TEST(PostCheckPoint, PreOrderTraversal_rl)
 {
 	MyAVLTree<int, std::string> tree;
-    tree.insert(10, "foo");
+    	tree.insert(10, "foo");
 	tree.insert(5, "sna");
 	tree.insert(20, "bar");
 	tree.insert(15, "twelve");
 	tree.insert(30, "fifteen");
 	tree.insert(13, "ele");
-    tree.insert(17, "sev");
+    	tree.insert(17, "sev");
 
 	std::vector<int> trav = tree.preOrder();
 	std::vector<int> expected = {15, 10, 5, 13, 20, 17, 30}; // AVL
