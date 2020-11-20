@@ -143,16 +143,19 @@ void MyAVLTree<Key, Value>::rotate(Node*& current) {
 
     std::cout << current->key << std::endl;
     auto temp = current;
+    auto temp2 = current;
     int scenario = 0;
     if (left - right > 1) {
         if (current->left->right == nullptr) { scenario = 1; }
 //        else if (current->left->left == nullptr) { scenario = 3; }
         else if (current->left->left->height > current->left->right->height) { scenario = 1; }
 //        else if (current->left->left < current->left->right) { scenario = 3; }
+	else { scenario = 3; } // lr
     }
     else if (right - left > 1) {
         if (current->right->left == nullptr) { scenario = 2; }
         else if (current->right->right->height > current->right->left->height) { scenario = 2; }
+	else { scenario = 4; } // rl
     }
 
     switch (scenario) {
@@ -171,7 +174,29 @@ void MyAVLTree<Key, Value>::rotate(Node*& current) {
             temp->height = left + 1;
             current->left = temp;
             std::cout << scenario << " GO" << std::endl;
-            break;
+            break; 
+	case 3:
+	    current = current->left;
+	    current = current->right;
+	    temp = temp->left;
+	    temp->right = current->left;
+	    temp2->left = current->right;
+	    current->left = temp;
+	    temp2->height = right + 1;
+	    current->right = temp2;
+	    std::cout << scenario << " GO" << std::endl;
+	    break;
+	case 4:   
+	    current = current->right;
+	    current = current->left;
+	    temp = temp->right;
+	    temp->left = current->right;
+	    temp2->right = current->left;
+	    current->right = temp;
+	    temp2->height = left + 1;
+	    current->left = temp2;
+	    std::cout << scenario << " GO" << std::endl;
+	    break;
     }
 }
 
