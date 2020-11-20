@@ -105,7 +105,6 @@ public:
 	std::vector<Key> preOrder() const;
 	std::vector<Key> postOrder() const;
 
-
 };
 
 
@@ -164,7 +163,6 @@ void MyAVLTree<Key, Value>::rotate(Node*& current) {
             temp->left = current->right;
             temp->height = right + 1;
             current->right = temp;
-//            current->height = temp->height + 1;
             std::cout << scenario << " GO" << std::endl;
             break;
         case 2:
