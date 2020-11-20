@@ -101,7 +101,7 @@ TEST(PostCheckPoint, PreOrderTraversal)
 	tree.insert(15, "fifteen");
 
 	std::vector<int> trav = tree.preOrder();
-	std::vector<int> expected = {5, 3, 10, 12, 15};
+	std::vector<int> expected = {5, 3, 12, 10, 15};
 	EXPECT_TRUE( trav == expected );
 }
 
@@ -116,7 +116,7 @@ TEST(PostCheckPoint, PostOrderTraversal)
 	tree.insert(15, "fifteen");
 
 	std::vector<int> trav = tree.postOrder();
-	std::vector<int> expected = {3, 15, 12, 10, 5};
+	std::vector<int> expected = {3, 10, 15, 12, 5};
 	EXPECT_TRUE( trav == expected );
 }
 	
