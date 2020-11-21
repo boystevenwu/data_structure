@@ -185,6 +185,21 @@ TEST(PostCheckPoint, PostOrderTraversal)
 	EXPECT_TRUE( trav == expected );
 }
 	
+TEST(PostCheckPoint, PostOrder_test2)
+{
+	MyAVLTree<int, std::string> tree;
+	tree.insert(7, "foo");
+	tree.insert(6, "sna");
+	tree.insert(5, "bar");
+	tree.insert(4, "twelve");
+	tree.insert(3, "fifteen");
+	tree.insert(2, "twelve");
+	tree.insert(1, "fifteen");
+
+	std::vector<int> trav = tree.postOrder();
+	std::vector<int> expected = {1, 3, 2, 5, 7, 6, 4}; // AVL
+	EXPECT_TRUE( trav == expected );
+}
 	
 	
 TEST(PostCheckPoint, JackSparrow)
@@ -212,5 +227,13 @@ TEST(PostCheckPoint, HameltOpen_good)
 	EXPECT_TRUE(tree.find("good") == 4);
 }	
 
+TEST(PostCheckPoint, HameltOpen_you)
+{
+	MyAVLTree<std::string, unsigned> tree; 
+	std::fstream fs;
+	fs.open("/home/ics46/projects/proj4/gtest/hamletopen.txt");
+	countWords(fs, tree);
+	EXPECT_TRUE(tree.find("you") == 6);
+}
 
 }
