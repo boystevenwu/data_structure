@@ -217,6 +217,20 @@ TEST(PostCheckPoint, JackSparrow)
 	EXPECT_TRUE(tree.find("dishonest") == 3);
 }
 
+TEST(PostCheckPoint, JackSparrow_test2)
+{
+	std::string quote = "I'm dishonest, and a dishonest man you can ";
+	quote += "always trust to be dishonest. Honestly. It's the honest ";
+	quote += "ones you want to watch out for, because you can never ";
+	quote += "predict when they're going to do something incredibly... stupid.";
+
+	std::istringstream stream( quote );
+
+	MyAVLTree<std::string, unsigned> tree;
+
+	countWords(stream, tree);
+	EXPECT_TRUE(tree.find("its") == 1);
+}
 	
 TEST(PostCheckPoint, HameltOpen_good)
 {
