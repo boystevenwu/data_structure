@@ -202,4 +202,15 @@ TEST(PostCheckPoint, JackSparrow)
 	EXPECT_TRUE(tree.find("dishonest") == 3);
 }
 
+	
+TEST(PostCheckPoint, HameltOpen_good)
+{
+	MyAVLTree<std::string, unsigned> tree; 
+	std::fstream fs;
+	fs.open("/home/ics46/projects/proj4/gtest/hamletopen.txt");
+	countWords(fs, tree);
+	EXPECT_TRUE(tree.find("good") == 4);
+}	
+
+
 }
