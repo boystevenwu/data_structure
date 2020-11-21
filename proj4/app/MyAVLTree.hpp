@@ -147,15 +147,15 @@ void MyAVLTree<Key, Value>::rotate(Node*& current) {
     int scenario = 0;
     if (left - right > 1) {
         if (current->left->right == nullptr) { scenario = 1; }
-//        else if (current->left->left == nullptr) { scenario = 3; }
+        else if (current->left->left == nullptr) { scenario = 3; }
         else if (current->left->left->height > current->left->right->height) { scenario = 1; }
-//        else if (current->left->left < current->left->right) { scenario = 3; }
-	else { scenario = 3; } // lr
+        else if (current->left->left->height < current->left->right->height) { scenario = 3; }
     }
     else if (right - left > 1) {
         if (current->right->left == nullptr) { scenario = 2; }
+        else if (current->right->right == nullptr) { scenario = 4; }
         else if (current->right->right->height > current->right->left->height) { scenario = 2; }
-	else { scenario = 4; } // rl
+        else if (current->right->right->height < current->right->left->height) { scenario = 4; }
     }
 
     switch (scenario) {
@@ -174,29 +174,29 @@ void MyAVLTree<Key, Value>::rotate(Node*& current) {
             temp->height = left + 1;
             current->left = temp;
             std::cout << scenario << " GO" << std::endl;
-            break; 
-	case 3:
-	    current = current->left;
-	    current = current->right;
-	    temp = temp->left;
-	    temp->right = current->left;
-	    temp2->left = current->right;
-	    current->left = temp;
-	    temp2->height = right + 1;
-	    current->right = temp2;
-	    std::cout << scenario << " GO" << std::endl;
-	    break;
-	case 4:   
-	    current = current->right;
-	    current = current->left;
-	    temp = temp->right;
-	    temp->left = current->right;
-	    temp2->right = current->left;
-	    current->right = temp;
-	    temp2->height = left + 1;
-	    current->left = temp2;
-	    std::cout << scenario << " GO" << std::endl;
-	    break;
+            break;
+        case 3:
+            current = current->left;
+            current = current->right;
+            temp = temp->left;
+            temp->right = current->left;
+            temp2->left = current->right;
+            current->left = temp;
+            temp2->height = right + 1;
+            current->right = temp2;
+            std::cout << scenario << " GO" << std::endl;
+            break;
+        case 4:
+            current = current->right;
+            current = current->left;
+            temp = temp->right;
+            temp->left = current->right;
+            temp2->right = current->left;
+            current->right = temp;
+            temp2->height = left + 1;
+            current->left = temp2;
+            std::cout << scenario << " GO" << std::endl;
+            break;
     }
 }
 
@@ -205,6 +205,7 @@ void MyAVLTree<Key, Value>::insertHelp(Node*& current, const Key &k, const Value
 {
     if (current == nullptr) {
         current = new Node(k,v);
+        std::cout << k << std::endl;
     }
     else {
         insertHelp(compass(current, k), k, v);
@@ -275,7 +276,7 @@ std::vector<Key> MyAVLTree<Key, Value>::inOrder() const
 {
 	std::vector<Key> foo;
 	inOrderHelp(root, foo);
-	return foo; 
+	return foo;
 }
 
 template<typename Key, typename Value>
@@ -293,7 +294,7 @@ std::vector<Key> MyAVLTree<Key, Value>::preOrder() const
 {
 	std::vector<Key> foo;
 	preOrderHelp(root, foo);
-	return foo; 
+	return foo;
 }
 
 
