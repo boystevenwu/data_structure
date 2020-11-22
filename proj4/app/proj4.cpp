@@ -1,13 +1,26 @@
+// Source file of proj4.hpp
+
 #include <fstream>
 #include <iostream>
-#include <stdio.h>
 #include <string>
 #include <sstream>
 
 #include "proj4.hpp"
 
-std::string keepOnlyLetters(std::string s);
+// filter the string to only allow letters in
+std::string keepOnlyLetters(std::string s)
+{
+	std::string ret = "";
+	for (size_t i=0; i < s.length(); i++)
+	{
+		if ( isalpha(s[i]) ) // isalpha() checks if this is a letter.
+		{
+			ret += std::tolower( s[i] );
+		}
+	}
 
+	return ret;
+}
 
 // This is a demo of how to read from the stream, isolate each 
 // word, and convert them all to lowercase.
@@ -43,22 +56,3 @@ void countWords(std::istream & in, MyAVLTree<std::string, unsigned> & counter)
 	}
 
 }
-
-
-
-std::string keepOnlyLetters(std::string s)
-{
-	std::string ret = "";
-	for (size_t i=0; i < s.length(); i++)
-	{
-		if ( isalpha(s[i]) ) // isalpha() checks if this is a letter.
-		{
-			ret += std::tolower( s[i] );
-		}
-
-	}
-	return ret;
-}
-
-
-

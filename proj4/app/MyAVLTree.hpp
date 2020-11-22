@@ -1,10 +1,12 @@
+// This header file contains declarations and implementations of AVL Tree
+// Using template and linked list to maintain the data structure
+
 #ifndef __PROJ_FOUR_AVL_HPP
 #define __PROJ_FOUR_AVL_HPP
 
 #include "runtimeexcept.hpp"
 #include <string>
 #include <vector>
-#include <iostream>
 
 class ElementNotFoundException : public RuntimeException 
 {
@@ -13,10 +15,12 @@ public:
 };
 
 
+// Class declaration
 template<typename Key, typename Value>
 class MyAVLTree
 {
 private:
+    // Linked list item
     struct Node
     {
         Key key;
@@ -40,6 +44,7 @@ private:
 	void preOrderHelp(Node* current, std::vector<Key>& foo) const;
 	void postOrderHelp(Node* current, std::vector<Key>& foo) const;
 
+    // Delete the leaves by traversal
 	void deleteHelp(Node* current) {
         if (current == nullptr) { return; }
 
@@ -108,30 +113,39 @@ public:
 };
 
 
+// Constructor of Tree
 template<typename Key, typename Value>
 MyAVLTree<Key,Value>::MyAVLTree() : root{nullptr}, length{0}
 {
 
 }
 
+// Return the number of leaves in the tree
 template<typename Key, typename Value>
 size_t MyAVLTree<Key, Value>::size() const noexcept
 {
 	return length;
 }
 
+// Return the bool indicator whether the tree is empty
 template<typename Key, typename Value>
 bool MyAVLTree<Key, Value>::isEmpty() const noexcept
 {
     return length == 0;
 }
 
+// Navigate the key when searching its supposed location
 template<typename Key, typename Value>
 typename MyAVLTree<Key, Value>::Node*& MyAVLTree<Key, Value>::compass(Node* current, const Key &k) const
 {
     return k < current->key ? current->left:current->right;
 }
 
+/**
+ * Implement the rotation mechanism per instructions
+ * compare the subtree heights by their stored info
+ * and rotate the branches with corresponding actions
+ */
 template<typename Key, typename Value>
 void MyAVLTree<Key, Value>::rotate(Node*& current) {
     int left, right;
@@ -141,7 +155,6 @@ void MyAVLTree<Key, Value>::rotate(Node*& current) {
     if (current->right == nullptr) { right = -1; }
     else { right = current->right->height; }
 
-    std::cout << current->key << std::endl;
     auto temp = current;
     auto temp2 = current;
     int scenario = 0;
@@ -166,14 +179,12 @@ void MyAVLTree<Key, Value>::rotate(Node*& current) {
             temp->left = current->right;
             temp->height = right + 1;
             current->right = temp;
-            std::cout << scenario << " GO" << std::endl;
             break;
         case 2:
             current = current->right;
             temp->right = current->left;
             temp->height = left + 1;
             current->left = temp;
-            std::cout << scenario << " GO" << std::endl;
             break;
         case 3:
             current = current->left;
@@ -184,7 +195,6 @@ void MyAVLTree<Key, Value>::rotate(Node*& current) {
             current->left = temp;
             temp2->height = right + 1;
             current->right = temp2;
-            std::cout << scenario << " GO" << std::endl;
             break;
         case 4:
             current = current->right;
@@ -195,17 +205,17 @@ void MyAVLTree<Key, Value>::rotate(Node*& current) {
             current->right = temp;
             temp2->height = left + 1;
             current->left = temp2;
-            std::cout << scenario << " GO" << std::endl;
             break;
     }
 }
 
+// Insert a key-value pair in the tree, track heights of leaves in the branch
+// Call rotate after insertion to check the balance
 template<typename Key, typename Value>
 void MyAVLTree<Key, Value>::insertHelp(Node*& current, const Key &k, const Value &v)
 {
     if (current == nullptr) {
         current = new Node(k,v);
-        std::cout << k << std::endl;
     }
     else {
         insertHelp(compass(current, k), k, v);
@@ -214,6 +224,7 @@ void MyAVLTree<Key, Value>::insertHelp(Node*& current, const Key &k, const Value
     }
 }
 
+// Call inserHelp() to insert items and increase the length afterwards
 template<typename Key, typename Value>
 void MyAVLTree<Key, Value>::insert(const Key & k, const Value & v)
 {
@@ -222,6 +233,7 @@ void MyAVLTree<Key, Value>::insert(const Key & k, const Value & v)
     length ++;
 }
 
+// check if a key exists in the tree by traversal
 template<typename Key, typename Value>
 bool MyAVLTree<Key, Value>::contains(const Key &k) const
 {
@@ -235,6 +247,12 @@ bool MyAVLTree<Key, Value>::contains(const Key &k) const
 	return false;
 }
 
+/**
+ * Return the value of a key
+ * Throw exception if not found
+ * 
+ * @return Value
+ */
 template<typename Key, typename Value>
 Value & MyAVLTree<Key, Value>::find(const Key & k)
 {
@@ -248,6 +266,12 @@ Value & MyAVLTree<Key, Value>::find(const Key & k)
     throw ElementNotFoundException("Cannot find key");
 }
 
+/**
+ * Return the value of a key
+ * Throw exception if not found
+ * 
+ * @return Value
+ */
 template<typename Key, typename Value>
 const Value & MyAVLTree<Key, Value>::find(const Key & k) const
 {
@@ -261,6 +285,8 @@ const Value & MyAVLTree<Key, Value>::find(const Key & k) const
     throw ElementNotFoundException("Cannot find key");
 }
 
+// Below 2 traverse the tree and return keys in a in order fashion
+// @return vector
 template<typename Key, typename Value>
 void MyAVLTree<Key, Value>::inOrderHelp(Node* current, std::vector<Key>& foo) const
 {
@@ -279,6 +305,8 @@ std::vector<Key> MyAVLTree<Key, Value>::inOrder() const
 	return foo;
 }
 
+// Below 2 traverse the tree and return keys in a pre order fashion
+// @return vector
 template<typename Key, typename Value>
 void MyAVLTree<Key, Value>::preOrderHelp(Node* current, std::vector<Key>& foo) const
 {
@@ -297,7 +325,8 @@ std::vector<Key> MyAVLTree<Key, Value>::preOrder() const
 	return foo;
 }
 
-
+// Below 2 traverse the tree and return keys in a post order fashion
+// @return vector
 template<typename Key, typename Value>
 void MyAVLTree<Key, Value>::postOrderHelp(Node* current, std::vector<Key>& foo) const
 {
