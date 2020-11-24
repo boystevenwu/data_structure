@@ -250,4 +250,37 @@ TEST(PostCheckPoint, HameltOpen_you)
 	EXPECT_TRUE(tree.find("you") == 6);
 }
 
+TEST(PostCheckPoint, Hamlet_1)
+{
+     MyAVLTree<std::string, unsigned> tree; 
+     std::fstream fs;
+     fs.open("/home/ics46/projects/proj4/gtest/hamletact1.txt");
+     countWords(fs, tree);
+     EXPECT_TRUE(tree.find("lord") == 60);
+     EXPECT_TRUE(tree.find("hamlet") == 103);
+     EXPECT_TRUE(tree.find("speak") == 27);
+     EXPECT_TRUE(tree.find("me") == 47);
+     EXPECT_TRUE(tree.find("and") == 229);
+     EXPECT_TRUE(tree.find("good") == 20);
+     EXPECT_TRUE(tree.find("cast") == 3);
+     EXPECT_TRUE(tree.find("all") == 36);
+}
+
+TEST(PostCheckPoint, Hamlet_2)
+{
+     MyAVLTree<std::string, unsigned> tree; 
+     std::fstream fs;
+     fs.open("/home/ics46/projects/proj4/gtest/hamletopen.txt");
+     countWords(fs, tree);
+     EXPECT_TRUE(tree.find("francisco") == 10);
+     EXPECT_TRUE(tree.find("holla") == 1);
+     EXPECT_TRUE(tree.find("farewell") == 1);
+
+     EXPECT_TRUE(tree.find("a") == 3);
+     EXPECT_TRUE(tree.find("bernardo") == 16);
+     EXPECT_TRUE(tree.find("most") == 1);
+     EXPECT_TRUE(tree.find("night") == 5);
+     EXPECT_TRUE(tree.find("carefully") == 1);
+}
+
 }
