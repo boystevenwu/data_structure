@@ -2,6 +2,8 @@
 #define __PROJ5_PRIORITY_QUEUE_HPP
 
 #include "runtimeexcept.hpp"
+#include <vector>
+#include <iostream>
 
 class PriorityQueueEmptyException : public RuntimeException 
 {
@@ -16,13 +18,23 @@ template<typename Object>
 class MyPriorityQueue
 {
 private:
-	// fill in private member data here
-	Object o; // this is only here for use in a stub, you probably want to delete this.
+    // item refers to the Object, left and right provide indexes to children
+    struct Node
+    {
+        Object item;
+        int left;
+        int right;
+        explicit Node(Object o, int index)
+                : item{o}, left{2*index+1}, right{2*index+2} { }
+    };
 
+    // min heap array implemented
+    std::vector<Node> queue;
 
 public:
 
-	// You also need a constructor and a destructor.
+    MyPriorityQueue();
+    ~MyPriorityQueue();
 
 
  	size_t size() const noexcept;
@@ -43,43 +55,54 @@ public:
 };
 
 
+template<typename Object>
+MyPriorityQueue<Object>::MyPriorityQueue() = default;
+
+template<typename Object>
+MyPriorityQueue<Object>::~MyPriorityQueue() = default;
 
 
 template<typename Object>
 size_t MyPriorityQueue<Object>::size() const noexcept
 {
-	return 500; // stub
+	return queue.size(); // stub
 }
-
-
 
 template<typename Object>
 bool MyPriorityQueue<Object>::isEmpty() const noexcept
 {
-	return true; // stub
+	return queue.size() == 0; // stub
 }
+
 
 template<typename Object>
 void MyPriorityQueue<Object>::insert(const Object & elem) 
 {
-	// stub
+    queue.push_back(Node(elem, queue.size()));
 }
-
-
 
 
 template<typename Object>
 const Object & MyPriorityQueue<Object>::min() const
 {
-	return o; // terrible idea, don't actually do this.
+    if (isEmpty()) {
+        throw PriorityQueueEmptyException("The Queue is Empty");
+    }
+    else {
+        return queue.at(0).item;
+    }
 }
-
 
 
 template<typename Object>
 void MyPriorityQueue<Object>::extractMin() 
 {
-	// stub
+    if (isEmpty()) {
+        throw PriorityQueueEmptyException("The Queue is Empty");
+    }
+    else {
+        queue.erase(queue.begin());
+    }
 }
 
 
