@@ -18,18 +18,10 @@ template<typename Object>
 class MyPriorityQueue
 {
 private:
-    // item refers to the Object, left and right provide indexes to children
-    struct Node
-    {
-        Object item;
-        int left;
-        int right;
-        explicit Node(Object o, int index)
-                : item{o}, left{2*index+1}, right{2*index+2} { }
-    };
-
     // min heap array implemented
-    std::vector<Node> queue;
+    std::vector<Object> queue;
+
+    void print();
 
 public:
 
@@ -78,7 +70,28 @@ bool MyPriorityQueue<Object>::isEmpty() const noexcept
 template<typename Object>
 void MyPriorityQueue<Object>::insert(const Object & elem) 
 {
-    queue.push_back(Node(elem, queue.size()));
+    queue.push_back(elem);
+    int index = queue.size() - 1;
+
+    // Mimic a recursive run to return index 0 and perform swapping
+    while (index != 0) { // exist the loop if reaching the top
+        int parent = (index-1)/2;
+
+        if (queue[parent] > queue[index]) {
+            std::swap(queue[parent], queue[index]);
+        }
+        print();
+        index = parent;
+    }
+}
+
+
+template<typename Object>
+void MyPriorityQueue<Object>::print() {
+    for (auto i : queue) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
 }
 
 
@@ -88,9 +101,8 @@ const Object & MyPriorityQueue<Object>::min() const
     if (isEmpty()) {
         throw PriorityQueueEmptyException("The Queue is Empty");
     }
-    else {
-        return queue.at(0).item;
-    }
+
+    return queue.at(0);
 }
 
 
@@ -100,8 +112,24 @@ void MyPriorityQueue<Object>::extractMin()
     if (isEmpty()) {
         throw PriorityQueueEmptyException("The Queue is Empty");
     }
-    else {
-        queue.erase(queue.begin());
+
+    queue[0] = queue.back();
+    queue.pop_back();
+    int index = 0;
+
+    // Mimic an iterative run to reach the bottom and perform swapping
+    while ((index*2)+1 < queue.size()) { // exist the loop if reaching the bottom
+        int left = (index*2)+1, right = (index*2)+2;
+        int child;
+
+        if (right >= queue.size()) { child = queue[left]; }
+        else { child = queue[left]<queue[right] ? left:right; }
+
+        if (queue[child] < queue[index]) {
+            std::swap(queue[child], queue[index]);
+        }
+        print();
+        index = child;
     }
 }
 

@@ -5,15 +5,23 @@ int main()
 {
     MyPriorityQueue<int> mpq;
 
-    mpq.insert(5);
     mpq.insert(10);
-    mpq.insert(15);
+    mpq.insert(9);
+    mpq.insert(8);
+    mpq.insert(7);
+    mpq.insert(6);
+    mpq.insert(5);
+    mpq.insert(1);
+    mpq.insert(2);
+    mpq.insert(3);
+    mpq.insert(4);
 
-    std::cout << mpq.size() << " " << mpq.isEmpty() << std::endl;
-    std::cout << mpq.min() << mpq.min() << std::endl;
+//    std::cout << mpq.size() << " " << mpq.isEmpty() << std::endl;
+//    std::cout << mpq.min() << mpq.min() << std::endl;
 
     mpq.extractMin();
     std::cout << mpq.min() << mpq.min() << std::endl;
-
+    mpq.extractMin();
+    std::cout << mpq.min() << mpq.min() << std::endl;
     return 0;
 }
