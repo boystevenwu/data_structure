@@ -74,7 +74,7 @@ void MyPriorityQueue<Object>::insert(const Object & elem)
     int index = queue.size() - 1;
 
     // Mimic a recursive run to return index 0 and perform swapping
-    while (index != 0) { // exist the loop if reaching the top
+    while (index != 0) { // exit the loop if reaching the top
         int parent = (index-1)/2;
 
         if (queue[parent] > queue[index]) {
@@ -118,7 +118,7 @@ void MyPriorityQueue<Object>::extractMin()
     int index = 0;
 
     // Mimic an iterative run to reach the bottom and perform swapping
-    while ((index*2)+1 < queue.size()) { // exist the loop if reaching the bottom
+    while ((index*2)+1 < queue.size()) { // exit the loop if reaching the bottom
         int left = (index*2)+1, right = (index*2)+2;
         int child;
 
