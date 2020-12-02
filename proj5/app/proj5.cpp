@@ -11,10 +11,10 @@ std::vector<Edge> compute_mst(std::vector< std::vector<unsigned>> & graph)
 
 // Returns the cost of the edges in the given vector,
 // This does not confirm that it is a MST at all.  
-unsigned mstCost(const std::vector<Edge> & vE) 
+unsigned mstCost(const std::vector<Edge> & vE)
 {
-	unsigned sum =0;
-	for(auto e: vE)
+	unsigned sum = 0;
+	for (auto e : vE)
 	{
 		sum += e.weight;
 	}

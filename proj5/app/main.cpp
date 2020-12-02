@@ -11,14 +11,28 @@ int main()
     mpq.insert(7);
     mpq.insert(6);
     mpq.insert(5);
-    mpq.insert(1);
-    mpq.insert(2);
-    mpq.insert(3);
-    mpq.insert(4);
+    mpq.insert(5);
+    mpq.insert(5);
+    mpq.insert(5);
+    mpq.insert(5);
 
 //    std::cout << mpq.size() << " " << mpq.isEmpty() << std::endl;
 //    std::cout << mpq.min() << mpq.min() << std::endl;
 
+    mpq.extractMin();
+    std::cout << mpq.min() << mpq.min() << std::endl;
+    mpq.extractMin();
+    std::cout << mpq.min() << mpq.min() << std::endl;
+    mpq.extractMin();
+    std::cout << mpq.min() << mpq.min() << std::endl;
+    mpq.extractMin();
+    std::cout << mpq.min() << mpq.min() << std::endl;
+    mpq.extractMin();
+    std::cout << mpq.min() << mpq.min() << std::endl;
+    mpq.extractMin();
+    std::cout << mpq.min() << mpq.min() << std::endl;
+    mpq.extractMin();
+    std::cout << mpq.min() << mpq.min() << std::endl;
     mpq.extractMin();
     std::cout << mpq.min() << mpq.min() << std::endl;
     mpq.extractMin();

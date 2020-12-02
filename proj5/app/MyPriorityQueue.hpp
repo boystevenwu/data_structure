@@ -123,7 +123,7 @@ void MyPriorityQueue<Object>::extractMin()
         int child;
 
         if (right >= queue.size()) { child = left; }
-        else { child = left<right ? left:right; }
+        else { child = queue[left]<queue[right] ? left:right; }
 
         if (queue[child] < queue[index]) {
             std::swap(queue[child], queue[index]);
