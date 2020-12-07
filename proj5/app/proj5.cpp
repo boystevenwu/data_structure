@@ -10,11 +10,13 @@ std::vector<Edge> compute_mst(std::vector< std::vector<unsigned>> & graph)
 	visited[0] = 1;
     std::vector<MyPriorityQueue<Edge>> collection;
 
-	for (int i = 0; i < graph.size()-1; ++i) {
+	for (int i = 0; i < graph.size(); ++i) {
 	    MyPriorityQueue<Edge> temp;
 
-	    for (int j = i+1; j < graph[i].size(); ++j) {
-            temp.insert(Edge(i, j, graph[i][j]));
+	    for (int j = 0; j < graph[i].size(); ++j) {
+	        if (graph[i][j]) {
+                temp.insert(Edge(i, j, graph[i][j]));
+            }
 	    }
 	    collection.push_back(temp);
 	}
@@ -22,7 +24,7 @@ std::vector<Edge> compute_mst(std::vector< std::vector<unsigned>> & graph)
     while (true) {
         std::vector<int> todo(graph.size(), INT_MAX);
 
-        for (int i = 0; i < visited.size()-1; i++) {
+        for (int i = 0; i < visited.size(); i++) {
             if (visited[i]) {
                 todo[i] = collection[i].min().weight;
             }
