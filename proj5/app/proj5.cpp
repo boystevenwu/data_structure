@@ -1,5 +1,4 @@
 #include "proj5.hpp"
-#include <iostream>
 #include "MyPriorityQueue.hpp"
 
 // As a reminder, for this project, edges have positive cost, g[i][j] = 0 means no edge.
@@ -33,15 +32,12 @@ std::vector<Edge> compute_mst(std::vector< std::vector<unsigned>> & graph)
         int index = std::min_element(todo.begin(), todo.end()) - todo.begin();
         auto temp {collection[index].min()};
         collection[index].extractMin();
-        std::cout << index << " - " << temp.weight << " --- ";
 
         if (visited[temp.pt1] != 1 or visited[temp.pt2] != 1) {
             mst.push_back(temp);
-            std::cout << mst.back().pt1 << " " << mst.back().pt2;
             visited[mst.back().pt1] = 1;
             visited[mst.back().pt2] = 1;
         }
-        std::cout << std::endl;
         if ( std::equal(visited.begin() + 1, visited.end(), visited.begin()) )
         {
             break;

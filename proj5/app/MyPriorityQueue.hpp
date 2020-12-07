@@ -3,7 +3,6 @@
 
 #include "runtimeexcept.hpp"
 #include <vector>
-#include <iostream>
 
 class PriorityQueueEmptyException : public RuntimeException 
 {
@@ -83,15 +82,6 @@ void MyPriorityQueue<Object>::insert(const Object & elem)
 
         index = parent;
     }
-}
-
-
-template<typename Object>
-void MyPriorityQueue<Object>::print() {
-    for (auto i : queue) {
-        std::cout << i << " ";
-    }
-    std::cout << std::endl;
 }
 
 
