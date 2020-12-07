@@ -77,10 +77,10 @@ void MyPriorityQueue<Object>::insert(const Object & elem)
     while (index != 0) { // exit the loop if reaching the top
         int parent = (index-1)/2;
 
-        if (queue[parent] > queue[index]) {
+        if (queue[index] < queue[parent]) {
             std::swap(queue[parent], queue[index]);
         }
-        print();
+
         index = parent;
     }
 }
@@ -128,7 +128,7 @@ void MyPriorityQueue<Object>::extractMin()
         if (queue[child] < queue[index]) {
             std::swap(queue[child], queue[index]);
         }
-        print();
+
         index = child;
     }
 }
